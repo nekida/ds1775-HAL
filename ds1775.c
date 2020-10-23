@@ -1,19 +1,19 @@
 #include "ds1775.h"
 
-uint8_t ds1775_control_code 				= 0x9;
+uint8_t ds1775_control_code 		= 0x9;
 uint8_t ds1775_addr_reg_temperature	= 0x0;
-uint8_t ds1775_slave_address				= 0x0;
+uint8_t ds1775_slave_address		= 0x0;
 
 float ds1775_get_temperature(void)
 {
-	float temperature = 0.0;
-	uint8_t temper[2] = {0};
+	float temperature	= 0.0;
+	uint8_t temper[2] 	= {0};
 	uint8_t tmp[2] 		= {0};	
-	int16_t tmp16			= 0;
+	int16_t tmp16		= 0;
 	uint8_t ds1775_slave_address_read;
 	uint8_t ds1775_slave_address_write;
 	
-	ds1775_slave_address = ( (ds1775_control_code  << 3) | (ds1775_addr_reg_temperature) );
+	ds1775_slave_address 		= ( (ds1775_control_code  << 3) | (ds1775_addr_reg_temperature) );
 	ds1775_slave_address_read 	= (ds1775_slave_address) << 1 | 0x1;
 	ds1775_slave_address_write 	= (ds1775_slave_address) << 1 & 0x0;
 
@@ -29,5 +29,3 @@ float ds1775_get_temperature(void)
 	
 	return temperature;
 }
-
-
